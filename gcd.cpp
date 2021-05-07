@@ -1,3 +1,7 @@
+// We implement the gcd function using the Euler formula. If we have to find the gcd of a and b then time complexity would be 
+// O(log(min(a,b))). Also if one of the number is zero the gcd is defined as the other number. Thus the algorithm works for
+// non negative numbers.
+
 #include<bits/stdc++.h>
 using namespace std;
 
