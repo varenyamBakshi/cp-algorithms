@@ -1,20 +1,32 @@
 #include<bits/stdc++.h>
-#include<stdlib.h>
 using namespace std;
 
 #define ll unsigned long long
+using u128 = __uint128_t;
 
 ll mpow(ll a, ll n, ll p){
-    ll res = 1;
+    u128 res = 1;
     while(n){
         if(n&1)res = (res*a)%p;
-        a = (a*a)%p;
+        a = ((u128)a*a)%p;
         n>>=1;
     }
     return res;
 }
 
-bool isPrime(ll x, int iter = 10){
+bool isComposite(ll a, ll x, ll d, ll s){
+    u128 A = mpow(a, d, x);
+    if(A==1||A==(x-1)) return false;
+    
+    while(s){
+            s--;
+            A = (A*A)%x;
+            if(A == (x-1))return false;
+    }
+    return true;
+}
+
+bool isPrime(ll x){
     ll s = 0, d = 0;
     ll temp = x-1;
     while(temp%2==0){
@@ -22,10 +34,10 @@ bool isPrime(ll x, int iter = 10){
         s++;
     }
     d = temp;
-    int primes[] = {2,3,5,7,11,13,17,19,23,29,31,37};
-    for(int a: prime){
+    ll primes[] = {2,3,5,7,11,13,17,19,23,29,31,37};
+    for(ll a: primes){
         if(a==x)return true;
-        if()
+        if(isComposite(a, x , d, s))return false;
     }
     return true;
 }
