@@ -33,7 +33,7 @@ int main(){
             }
         }
         else{
-            while(j>0 && pat[j]!=text[j])j = pi[j-1];
+            while(j>0 && pat[j]!=text[i])j = pi[j-1];
             if(pat[j]!=text[i])i++;
         }
     }
