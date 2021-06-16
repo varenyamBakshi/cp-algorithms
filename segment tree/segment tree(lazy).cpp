@@ -34,13 +34,15 @@ void pushdown(int v, int tl, int tr){
 void update(int v, int tl, int tr, int l, int r, int val){
     if(l>tr || r<tl)return;                    // no overlap
     if(tl>=l && tr<=r){                        // fully within
-        apply(v, tl, tr, val);               //instead of passing down the update we ask the node to remember it
+        apply(v, tl, tr, val);
+        return;               //instead of passing down the update we ask the node to remember it
     }
     pushdown(v, tl, tr);      // before going down we ask the node to push down its knowledge to its children 
 
     int tm = (tl+tr)/2;
     update(2*v, tl, tm, l, r, val);
     update(2*v+1, tm+1, tr, l, r, val);
+    stree[v] = stree[2*v] + stree[2*v+1];
 }
 
 ll query(int v, int tl, int tr, int l, int r){
