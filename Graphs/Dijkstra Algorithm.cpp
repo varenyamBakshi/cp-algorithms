@@ -35,23 +35,3 @@ int main(){
     for(int i = 1; i <= n; i++) cout<<i<<":"<<dist[i]<<" ";
     return 0;
 }
-
-
-
-
-int helper(vector<int>& a,int n,int count,int prev,vector<int> &t)
-    {
-        if(n==-1) return count;
-      
-        if(a[n]<prev){
-            if(t[n]!=-1)return t[n];
-            return t[n]=max(helper(a,n-1,count+1,a[n],t),helper(a,n-1,count,prev,t));
-        }
-        return t[n]= helper(a,n-1,count,prev,t);
-    }
-int lengthOfLIS(vector<int>& a)
-    {
-        vector<int> t(a.size(),-1);
-        helper(a,a.size()-1,0,INT_MAX,t);
-        return *max_element(t.begin(), t.end());
-    }
